@@ -90,83 +90,46 @@ for_i:
             bge break_k
 
 
-
-            mov x0, x25
-            mov x1, x23
-            bl intmul
-            mov x1, x27
-            bl intadd
-            mov x1, #4
-            bl intmul
-            mov x1, x20
-            bl intadd
+            mul x0, x25, x23
+            add x0, x0, x27
+            mov x9, #4
+            mul x0, x0, x9
+            add x0, x0, x20
 
             ldr x11, [x0]
 
-
-            mov x0, x27
-            mov x1, x24
-            bl intmul
-            mov x1, x26
-            bl intadd
-            mov x1, #4
-            bl intmul
-            mov x1, x21
-            bl intadd
+            mul x0, x27, x24
+            add x0, x0, x26
+            mov x9, #4
+            mul x0, x0, x9
+            add x0, x0, x21
 
             ldr x0, [x0]
 
+            mul x0, x0, x11
 
 
-            mov x1, x11
-            bl intmul
-            //mul x0, x0, x11
+            add x28, x28, x0
 
-
-            mov x1, x28
-            bl intadd
-            mov x28, x0
-
-
-
-
-
-
-            mov x0, x27
-            mov x1, #1
-            bl intadd
-            mov x27, x0
+            add x27, x27, #1
             b for_k
         break_k:
         mov x27, #0
 
-
-        mov x0, x25
-        mov x1, x24
-        bl intmul
-        mov x1, x26
-        bl intadd
-        mov x1, #4
-        bl intmul
-        mov x1, x19
-        bl intadd
+        mul x0, x25, x24
+        add x0, x0, x26
+        mov x9, #4
+        mul x0, x0, x9
+        add x0, x0, x19
         str x28, [x0]
 
-
-        mov x0, x26
-        mov x1, #1
-        bl intadd
-        mov x26, x0
+        add x26, x26, #1
         b for_j
 
     break_j:
     mov x26, #0
-    mov x0, x25
-    bl intadd
-    mov x25, x0
-    mov x0, #1
 
-
+    add x25, x25, #1
     b for_i
 break:
 

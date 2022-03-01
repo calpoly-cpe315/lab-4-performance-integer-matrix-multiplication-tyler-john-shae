@@ -96,12 +96,11 @@ for_i:
             bl intmul
             mov x1, x27
             bl intadd
-            mov x1, #4
-            bl intmul
+            lsl x0, x0, #2
             mov x1, x20
             bl intadd
 
-            ldr x11, [x0]
+            ldr w11, [x0]
 
 
             mov x0, x27
@@ -109,14 +108,11 @@ for_i:
             bl intmul
             mov x1, x26
             bl intadd
-            mov x1, #4
-            bl intmul
+            lsl x0, x0, #2
             mov x1, x21
             bl intadd
 
             ldr x0, [x0]
-
-
 
             mov x1, x11
             bl intmul
@@ -146,8 +142,7 @@ for_i:
         bl intmul
         mov x1, x26
         bl intadd
-        mov x1, #4
-        bl intmul
+        lsl x0, x0, #2
         mov x1, x19
         bl intadd
         str x28, [x0]

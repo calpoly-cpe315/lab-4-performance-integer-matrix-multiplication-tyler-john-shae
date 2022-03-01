@@ -92,16 +92,14 @@ for_i:
 
             mul x0, x25, x23
             add x0, x0, x27
-            mov x9, #4
-            mul x0, x0, x9
+            lsl x0, x0, #2
             add x0, x0, x20
 
             ldr x11, [x0]
 
             mul x0, x27, x24
             add x0, x0, x26
-            mov x9, #4
-            mul x0, x0, x9
+            lsl x0, x0, #2
             add x0, x0, x21
 
             ldr x0, [x0]
@@ -118,8 +116,7 @@ for_i:
 
         mul x0, x25, x24
         add x0, x0, x26
-        mov x9, #4
-        mul x0, x0, x9
+        lsl x0, x0, #2
         add x0, x0, x19
         str x28, [x0]
 

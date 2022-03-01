@@ -23,17 +23,20 @@ intmul:
 
     mov x22, #0	//set negative flag to 0
 
-    cmp x23, #0	//check if iterator is negative
-    bge notneg
+    lsr x9, x23, #31
+
+    cmp x9, #0	//check if iterator is negative
+    beq notneg
+
+    
+    mov x9, #0
+    sub w23, w9, w23
+
+	
     mov x22, #1	//set negative flag to 1
 
-    //mov x0, #0	//x23 = 0 - x23
-    //mov x1, x23
-    //bl intsub
-    //mov x23, x0	//..
-    mvn x23, x23
-    add x23, x23, #1
 
+    
 notneg:
     mov x0, x20
     mov x1, x0	//x0 is stored in x0 and x1
@@ -43,14 +46,17 @@ notneg:
     cmp x23, #1	//check if done
     beq end		//jump to end
 
-    bl intadd
 
+    bl intadd
     mov x21, x0	//subtract one from iterator
     mov x20, x1
-    mov x0, x23
-    mov x1, #1
-    bl intsub
+    
+    mov x0, x23	//x0 = -x0
+    mov x1, #-1
+    bl intadd
     mov x23, x0
+
+
     mov x0, x21
     mov x1, x20
 
@@ -64,9 +70,11 @@ zero:		//if zero, return 0
     cmp x22, #0
     beq skipneg
 
-    mov x1, x0	//x0 = -x0
-    mov x0, #0
-    bl intsub
+
+mvn x0, x0
+add x0, x0, 1
+
+
 
 skipneg:
     ldr x20, [sp], 16

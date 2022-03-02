@@ -1,5 +1,9 @@
 # cpe315-matmul
-## Your name(s) here
+## Tyler Bovenzi: tylerbovenzi
+
+## Shae Li: wwo233
+
+## John Kroska: jkroska
 
 ### To build:
 ```shell
@@ -26,4 +30,9 @@ Note that N above is one of:
 #define MATRIX_SIZE
 ```
 3. Save the file
+4. Rebuild
+
+### To test with ARM MUL:
+1. edit the Makefile
+2. change matmul.s to matmul_mul.s
 4. Rebuild
